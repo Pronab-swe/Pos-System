@@ -10,70 +10,58 @@ export const AllProducts = [
     {
       id: "IT01",
       name: "CANON 1100D",
-      price: 100,
+      price: 1200,
       image: Camera,
       description: "Test descripotion",
     },
     {
       id: "IT02",
       name: "COMPUTER SET-1",
-      price: 150,
+      price: 4000,
       image: Computer1,
       description: "Test descripotion",
     },
     {
       id: "IT03",
       name: "COMPUTER SET-2",
-      price: 200,
+      price: 5000,
       image: Computer2,
       description: "Test descripotion",
     },
     {
       id: "IT04",
       name: "HARD DISK",
-      price: 80,
+      price: 1800,
       image: HardDisk,
       description: "Test descripotion",
     },
     {
       id: "IT05",
       name: "KEYBOARD",
-      price: 50,
+      price: 300,
       image: Keyboard,
       description: "Test descripotion",
     },
     {
       id: "IT06",
       name: "LAPTOP",
-      price: 120,
+      price: 6000,
       image: Laptop,
       description: "Test descripotion",
     },
     {
       id: "IT07",
       name: "MOUSE",
-      price: 20,
+      price: 150,
       image: Mouse,
       description: "Test descripotion",
     },
     {
       id: "IT08",
       name: "RAM",
-      price: 60,
+      price: 900,
       image: Ram,
       description: "Test descripotion",
     },
   ];
-  
-  export function getProducts() {
-    return AllProducts;
-  }
-  
-  export function getProduct(id) {
-    return AllProducts.find((item) => item.id === id);
-  }
-  
-  export function getProductByName(name) {
-    return AllProducts.find((item) => item.name === name);
-  }
-  
+

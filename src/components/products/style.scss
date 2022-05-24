@@ -1,6 +1,7 @@
 @import "../../App.scss";
 
 .product-section{
+    height: 100vh;
     background: $gray-100;
 }
 .product-details {
@@ -12,4 +13,9 @@
         width: 90px !important;
         height: 90px !important;
     }
+}
+
+.product-details:hover{
+    opacity: .7;
+    border: .5px solid rgb(82, 80, 80) !important;
 }
