@@ -1,0 +1,15 @@
+@import "../../App.scss";
+
+.product-section{
+    background: $gray-100;
+}
+.product-details {
+    width: 110px;
+    font-size: 13px;
+    background: white;
+
+    .product-image {
+        width: 90px !important;
+        height: 90px !important;
+    }
+}
