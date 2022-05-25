@@ -1,12 +1,11 @@
-// import logo from './logo.svg';
 import './App.scss';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from 'react-router-dom';
-import FourOFour from './pages/fourOfour/Index'
 import Home from './pages/home/Index'
+import FourOFour from './pages/fourOfour/Index'
 
 function App() {
   return (

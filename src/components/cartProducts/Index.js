@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
-import './style.scss'
-import { Icon } from 'react-icons-kit'
-import { pencil, eye, plusCircle, money } from 'react-icons-kit/fa'
-import { CartTables } from "./cartTables";
-import { useSelector, useDispatch } from "react-redux";
-import { addProduct, clearCart } from "../../redux/actions/productActions";
-import { AllProducts } from "../../utils/data";
-import { productsList } from "../../redux/actions/productActions";
-import { ToastContainer, toast } from 'react-toastify';
+import './style.scss';
+import { Icon } from 'react-icons-kit';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { useSelector, useDispatch } from "react-redux";
+import { pencil, eye, plusCircle, money } from 'react-icons-kit/fa';
+import { addProduct, deleteAllProducts } from "../../redux/actions/productActions";
+import { productsList } from "../../redux/actions/productActions";
 import { PreviewModal } from "../modal/PreviewModal";
+import { AllProducts } from "../../utils/data";
+import { CartTables } from "./cartTables";
 
 export const CartProducts = () => {
     const dispatch = useDispatch();
@@ -48,15 +48,15 @@ export const CartProducts = () => {
     // Handle product subtotal and items calculation
     const handleProductCalculation = useCallback(() => {
         if (products && products.length > 0) {
-            let preTotal = 0;
-            let preTotalItem = 0;
+            let totalPrice = 0
+            let totalItem = 0
             for (let i = 0; i < products.length; i++) {
-                const element = products[i];
-                preTotal += element.price * element.quantity;
-                preTotalItem += element.quantity;
+                const item = products[i]
+                totalPrice = totalPrice + (item.price * item.quantity)
+                totalItem = totalItem + item.quantity
             }
-            setSubTotal(preTotal);
-            setItems(preTotalItem);
+            setSubTotal(totalPrice);
+            setItems(totalItem);
         } else {
             setSubTotal(0);
             setItems(0);
@@ -109,134 +109,34 @@ export const CartProducts = () => {
                         onChange={(e) => setSearchInput(e.target.value)}
                         style={{ fontSize: "15px" }}
                     />
-                    <span className="input-group-text text-primary" onClick={() => handleAddToCart()}>
+                    <span
+                        className="input-group-text text-primary"
+                        onClick={() => handleAddToCart()}
+                        style={{ cursor: "pointer" }}
+                    >
                         <Icon icon={plusCircle} size={18} />
                     </span>
                 </div>
 
+                {/* Cart table compontent call */}
                 <CartTables
                     subTotal={subTotal}
                     items={items}
                     productsList={products}
                 />
 
-                {/* Table for cart products */}
-                {/* <div className="table-responsive main-cart-table overflow-auto mb-2 border-bottom">
-                    <table className="table table-bordered">
-                        <thead className="cart-thead sticky-top text-center">
-                            <tr>
-                                <th className="w-50" scope="col-3">Product</th>
-                                <th scope="col-2">Price</th>
-                                <th scope="col-2">Quantity</th>
-                                <th scope="col-3">Subtotal</th>
-                                <th scope="col-2">
-                                    <Icon icon={trash} size={18} />
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="border-1">
-                            <tr>
-                                <td>COMPUTER SET - 1</td>
-                                <td className="text-center">4000</td>
-                                <td className="text-center">
-                                    <input
-                                        className="w-50 p-0 shadow-none"
-                                        type="number"
-                                        defaultValue={2}
-                                        readOnly
-                                    />
-                                </td>
-                                <td className="text-center">8000</td>
-                                <td className="text-center">
-                                    <button
-                                        className="btn p-0 shadow-none"
-                                        type="button"
-                                    >
-                                        <Icon icon={remove} size={18} />
-                                    </button>
-                                </td>
-                            </tr>
-                           
-                        </tbody>
-                    </table>
-                </div> */}
-
-                {/* <div className="row mx-1 pt-2">
-                    <div className="col-6 d-flex border py-1">
-                        <span className="text-start w-100">
-                            Items
-                        </span>
-                        <span className="text-end">
-                            0.00
-                        </span>
-                    </div>
-                    <div className="col-6 d-flex border py-1">
-                        <span className="text-start w-100">
-                            Total
-                        </span>
-                        <span className="text-end">
-                            0.00
-                        </span>
-                    </div>
-                </div>
-                <div className="row mx-1">
-                    <div className="col-6 d-flex border py-1">
-                        <span className="text-start w-100">
-                            Order Tax
-                        </span>
-                        <span className="text-end">
-                            0.00
-                        </span>
-                    </div>
-                    <div className="col-6 d-flex border py-1">
-                        <span className="text-start w-100">
-                            Discount
-                        </span>
-                        <span className="text-end">
-                            0.00
-                        </span>
-                    </div>
-                </div> */}
-
-                {/* <table className="table table-bordered mb-0">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span className="float-start">Items</span>
-                                <span className="float-end">0.00</span>
-                            </td>
-                            <td>
-                                <span className="float-start">Total</span>
-                                <span className="float-end">0.00</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span className="float-start">Order Tax
-                                    <span className="text-primary"> <Icon icon={edit} size={14} /></span>
-                                </span>
-                                <span className="float-end"> 0.00</span>
-                            </td>
-                            <td>
-                                <span className="float-start">Discount
-                                    <span className="text-primary"> <Icon icon={edit} size={14} /></span>
-                                </span>
-                                <span className="float-end"> 0.00</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> */}
-
+                {/* Cancel, order, suspend, bill and payment submit section */}
                 <table className="table-sm w-100">
-                    {/* <thead></thead> */}
                     <tbody>
+
+                        {/* Suspend, order and payment section */}
                         <tr>
                             <td
                                 className="bg-warning text-center border-bottom-0"
                                 onClick={() => {
                                     products && products.length ?
-                                        dispatch(clearCart()) && handleToast("success", "All Product Remove From Cart")
+                                        dispatch(deleteAllProducts()) &&
+                                        handleToast("success", "All Product Remove From Cart")
                                         :
                                         handleToast("error", "No Product Available")
                                 }}
@@ -244,7 +144,7 @@ export const CartProducts = () => {
                                 <div
                                     className="btn w-100 shadow-none text-white"
                                 >
-                                    Suspand
+                                    Suspend
                                 </div>
                             </td>
                             <td
@@ -268,6 +168,7 @@ export const CartProducts = () => {
                                 role="button"
                                 onClick={() => {
                                     products && products.length ?
+                                        dispatch(deleteAllProducts()) &&
                                         handleToast("success", "The Order is Saved Successfully")
                                         :
                                         handleToast("error", "No Product Available")
@@ -281,12 +182,14 @@ export const CartProducts = () => {
                             </td>
                         </tr>
 
+                        {/* Cancel and bill section */}
                         <tr>
                             <td
                                 className="bg-danger text-center"
                                 onClick={() => {
                                     products && products.length ?
-                                        dispatch(clearCart()) && handleToast("success", "All Product Remove From Cart")
+                                        dispatch(deleteAllProducts()) &&
+                                        handleToast("success", "All Product Remove From Cart")
                                         :
                                         handleToast("error", "No Product Available")
                                 }}
@@ -316,6 +219,8 @@ export const CartProducts = () => {
                     </tbody>
                 </table>
             </div>
+
+            {/* Preview modal call */}
             <PreviewModal
                 show={show}
                 onHide={() => setShow(false)}
@@ -326,8 +231,11 @@ export const CartProducts = () => {
                     subTotal={subTotal}
                     items={items}
                     productsList={products}
+                    preview={true}
                 />
             </PreviewModal>
+
+            {/* Toastify container call */}
             <ToastContainer />
         </div>
     )

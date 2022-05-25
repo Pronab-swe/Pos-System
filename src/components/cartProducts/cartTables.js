@@ -1,29 +1,32 @@
 import React from "react";
-import './style.scss'
-import { Icon } from 'react-icons-kit'
-import { trash, remove } from 'react-icons-kit/fa'
-import { edit } from "react-icons-kit/fa";
-import NoData from "../../assets/nodata.png"
-import { removeProduct } from "../../redux/actions/productActions";
+import './style.scss';
+import { Icon } from 'react-icons-kit';
 import { useDispatch } from "react-redux";
+import { edit } from "react-icons-kit/fa";
+import { trash, remove } from 'react-icons-kit/fa';
+import { deleteProduct } from "../../redux/actions/productActions";
+import NoData from "../../assets/nodata.png";
 
 export const CartTables = (props) => {
     const dispatch = useDispatch()
 
     return (
         <>
-            {/* Table for cart products */}
+            {/* Table for cart products section */}
             <div className="table-responsive main-cart-table overflow-auto mb-2">
                 <table className="table table-bordered">
                     <thead className="cart-thead sticky-top text-center">
                         <tr>
                             <th className="w-50" scope="col-3">Product</th>
                             <th scope="col-2">Price</th>
-                            <th scope="col-2">Quantity</th>
+                            <th className="w-25" scope="col-2">Quantity</th>
                             <th scope="col-3">Subtotal</th>
-                            <th scope="col-2">
-                                <Icon icon={trash} size={18} />
-                            </th>
+                            {props && !props.preview ?
+                                <th scope="col-2">
+                                    <Icon icon={trash} size={18} />
+                                </th>
+                                : null
+                            }
                         </tr>
                     </thead>
                     <tbody className="border-1">
@@ -35,22 +38,25 @@ export const CartTables = (props) => {
                                         <td className="text-center">{data.price.toFixed(2)}</td>
                                         <td className="text-center">
                                             <input
-                                                className="w-50 p-0 shadow-none"
+                                                className="w-50 p-0 shadow-none text-center"
                                                 type="number"
                                                 value={data.quantity}
                                                 readOnly
                                             />
                                         </td>
                                         <td className="text-center">{(data.price * data.quantity).toFixed(2)}</td>
-                                        <td className="text-center">
-                                            <button
-                                                className="btn p-0 shadow-none"
-                                                type="button"
-                                                onClick={() => dispatch(removeProduct(data.id))}
-                                            >
-                                                <Icon icon={remove} size={18} />
-                                            </button>
-                                        </td>
+                                        {props && !props.preview ?
+                                            <td className="text-center">
+                                                <button
+                                                    className="btn p-0 shadow-none"
+                                                    type="button"
+                                                    onClick={() => dispatch(deleteProduct(data.id))}
+                                                >
+                                                    <Icon icon={remove} size={18} />
+                                                </button>
+                                            </td>
+                                            : null
+                                        }
                                     </tr>
                                 )
                             })
@@ -65,51 +71,12 @@ export const CartTables = (props) => {
                                     <p>No product available</p>
                                 </td>
                             </tr>
-
                         }
-
-
                     </tbody>
                 </table>
             </div>
 
-            {/* <div className="row mx-1 pt-2">
-                    <div className="col-6 d-flex border py-1">
-                        <span className="text-start w-100">
-                            Items
-                        </span>
-                        <span className="text-end">
-                            0.00
-                        </span>
-                    </div>
-                    <div className="col-6 d-flex border py-1">
-                        <span className="text-start w-100">
-                            Total
-                        </span>
-                        <span className="text-end">
-                            0.00
-                        </span>
-                    </div>
-                </div>
-                <div className="row mx-1">
-                    <div className="col-6 d-flex border py-1">
-                        <span className="text-start w-100">
-                            Order Tax
-                        </span>
-                        <span className="text-end">
-                            0.00
-                        </span>
-                    </div>
-                    <div className="col-6 d-flex border py-1">
-                        <span className="text-start w-100">
-                            Discount
-                        </span>
-                        <span className="text-end">
-                            0.00
-                        </span>
-                    </div>
-                </div> */}
-
+            {/* Total items and total price section */}
             <table className="table table-bordered mb-0">
                 <tbody>
                     <tr>
@@ -143,6 +110,8 @@ export const CartTables = (props) => {
                     </tr>
                 </tbody>
             </table>
+
+            {/* Total payable section */}
             <table className="table mb-0">
                 <tbody>
                     <tr>
@@ -153,7 +122,6 @@ export const CartTables = (props) => {
                     </tr>
                 </tbody>
             </table>
-
         </>
     )
 }

@@ -1,61 +1,32 @@
-import {
-  CART_PRODUCT_REQUEST,
-  CART_PRODUCT_SUCCESS,
-  CART_PRODUCT_FAILED,
-  ADD_CART_REQUEST,
-  REMOVE_FROM_CART,
-  INCREMENT_QUANTITY,
-  DECREMENT_QUANTITY,
-  CLEAR_CART,
-} from "../contents/actionTypes";
+import {ActionTypes} from "../contents/actionTypes";
 
-// Prduct Get Action
+// Getting all products action
 export const productsList = () => {
   return async (dispatch) => {
-    try {
-      dispatch({ type: CART_PRODUCT_REQUEST });
       let products = [];
       if (localStorage.getItem("products")) {
         products = JSON.parse(localStorage.getItem("products"));
       }
       dispatch({
-        type: CART_PRODUCT_SUCCESS,
+        type: ActionTypes.GET_CART_PRODUCT,
         payload: products,
       });
-    } catch (error) {
-      dispatch({
-        type: CART_PRODUCT_FAILED,
-        payload: error.message,
-      });
-    }
   };
 };
 
-// Product Add Action
+// Adding single product to cart action
 export const addProduct = (data) => {
   return async (dispatch) =>
-    dispatch({ type: ADD_CART_REQUEST, payload: data });
+    dispatch({ type: ActionTypes.ADD_PRODUCT, payload: data });
 };
 
-// Product Remove Action
-export const removeProduct = (data) => {
+// Deleting single product from cart action
+export const deleteProduct = (data) => {
   return async (dispatch) =>
-    dispatch({ type: REMOVE_FROM_CART, payload: data });
+    dispatch({ type: ActionTypes.DELETE_PRODUCT, payload: data });
 };
 
-// Increment Quantity
-export const incrementQuantity = (data) => {
-  return async (dispatch) =>
-    dispatch({ type: INCREMENT_QUANTITY, payload: data });
-};
-
-// Decrement Quantity
-export const decrementQuantity = (data) => {
-  return async (dispatch) =>
-    dispatch({ type: DECREMENT_QUANTITY, payload: data });
-};
-
-// Clear Cart
-export const clearCart = () => {
-  return async (dispatch) => dispatch({ type: CLEAR_CART });
+// Deleting all products from cart
+export const deleteAllProducts = () => {
+  return async (dispatch) => dispatch({ type: ActionTypes.DELETE_ALL_PRODUCTS });
 };

@@ -1,26 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import './style.scss'
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/actions/productActions";
+import { Loader } from "../loading/Index";
 
 export const Products = (props) => {
 
     const dispatch = useDispatch();
-    // const { products } = props;
+    const [loading, setLoading] = useState(false)
 
-    // Add to cart
+    // handle add product to cart
     const handleAddToCart = (data) => {
-        console.log(data);
+        setLoading(true)
         const selectedProduct = {
             quantity: 1,
             ...data,
         };
+        setTimeout(() => {
+            dispatch(addProduct(selectedProduct));
+            setLoading(false)
+        }, 500);
 
-        dispatch(addProduct(selectedProduct));
     };
+
 
     return (
         <div className="product-section">
+            {loading ? <Loader /> : null}
             <div className="d-flex flex-wrap text-center py-2 p-2">
                 {props.products && props.products.length > 0 ?
                     props.products.map((data, i) => {

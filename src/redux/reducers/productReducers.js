@@ -1,45 +1,21 @@
-import {
-  CART_PRODUCT_REQUEST,
-  CART_PRODUCT_SUCCESS,
-  CART_PRODUCT_FAILED,
-  ADD_CART_REQUEST,
-  REMOVE_FROM_CART,
-  INCREMENT_QUANTITY,
-  DECREMENT_QUANTITY,
-  CLEAR_CART,
-} from "../contents/actionTypes";
+import { ActionTypes } from "../contents/actionTypes";
 
 const initialState = {
-  loading: false,
   products: [],
-  error: "",
-  success: "",
 };
 
-export const cartReducer = (state = initialState, action) => {
+export const productReducer = (state = initialState, action) => {
   switch (action.type) {
-    // All Cart Products
-    case CART_PRODUCT_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
-    case CART_PRODUCT_SUCCESS:
+    // Getting all product
+    case ActionTypes.GET_CART_PRODUCT:
       return {
         ...state,
         loading: false,
         products: action.payload,
       };
-    case CART_PRODUCT_FAILED:
-      return {
-        ...state,
-        loading: false,
-        products: [],
-        error: action.payload,
-      };
 
-    // Product Add To Cart
-    case ADD_CART_REQUEST:
+    // Adding product to cart
+    case ActionTypes.ADD_PRODUCT:
       let exists = state.products.find((x) => x.id === action.payload.id);
 
       if (exists) {
@@ -52,7 +28,6 @@ export const cartReducer = (state = initialState, action) => {
             }
             return product;
           }),
-          success: true,
         };
       } else {
         let products = [];
@@ -67,13 +42,11 @@ export const cartReducer = (state = initialState, action) => {
         return {
           ...state,
           products: [...state.products, action.payload],
-          success: true,
-          show: true,
         };
       }
 
-    // Product remove
-    case REMOVE_FROM_CART:
+    // Deleting single product to cart
+    case ActionTypes.DELETE_PRODUCT:
       const items = JSON.parse(localStorage.getItem("products"));
       const filtered = items.filter((item) => item.id !== action.payload);
       localStorage.setItem("products", JSON.stringify(filtered));
@@ -82,41 +55,11 @@ export const cartReducer = (state = initialState, action) => {
         ...state,
         products: state.products.filter(
           (product) => product.id !== action.payload
-        ),
-        success: true,
+        )
       };
 
-    // Increment Quantity
-    case INCREMENT_QUANTITY:
-      return {
-        ...state,
-        products: state.products.map((product) => {
-          if (product.id === action.payload) {
-            product.quantity += 1;
-            localStorage.setItem("products", JSON.stringify(state.products));
-          }
-          return product;
-        }),
-
-        success: true,
-      };
-
-    // Decrement Quantity
-    case DECREMENT_QUANTITY:
-      return {
-        ...state,
-        products: state.products.map((product) => {
-          if (product.id === action.payload) {
-            product.quantity -= 1;
-            localStorage.setItem("products", JSON.stringify(state.products));
-          }
-          return product;
-        }),
-        success: true,
-      };
-
-    // Clear cart
-    case CLEAR_CART:
+    // Deleting all product from cart
+    case ActionTypes.DELETE_ALL_PRODUCTS:
       localStorage.removeItem("products");
 
       return {
