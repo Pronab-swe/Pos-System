@@ -1,30 +1,22 @@
 @import "../../App.scss";
 
-.cart-section{
+.cart-section {
     height: 100vh;
     background: $gray-100;
 }
 
-.main-cart-table{
-    height: 40vh;
-    font-size: 14px;
+.main-cart-table {
+    height: 45vh;
+    font-size: 13px;
+
+    @media (min-width: 1680px) {
+        height: auto;
+        max-height: 60vh;
+    }
 }
-.cart-thead{
+
+.cart-thead {
     background-color: #3d8bfd;
     color: white;
     border-color: #5a5a5a36;
 }
-
-// .total-payable{
-//     background-color: black;
-//     color: white;
-// }
-// .totalPayable{
-//     background: #3c3a3a;
-//      color: white
-// }
-
-// .largeButton {
-//     width: 100%;
-//     color: white
-// }
