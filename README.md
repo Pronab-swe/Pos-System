@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+## Overview of POS System with images
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Home page of POS System
 
-## Available Scripts
+![image](https://user-images.githubusercontent.com/20016273/170445718-5642f314-180d-494b-ad95-fd2011124af4.png)
 
-In the project directory, you can run:
+### Add product to cart
 
-### `npm start`
+![image](https://user-images.githubusercontent.com/20016273/170446264-57a7e542-37d0-4e25-a28c-8f49693c0af3.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Multiple product in cart
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![image](https://user-images.githubusercontent.com/20016273/170446898-ed45b36a-13ee-435e-b568-506646630e33.png)
 
-### `npm test`
+### Increasing product quantity by adding same product to cart
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![image](https://user-images.githubusercontent.com/20016273/170447522-bb937cbc-04d2-4369-b248-22b3a8ec15eb.png)
 
-### `npm run build`
+### Remove single product from cart by clicking remove button
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Step-1
+![image](https://user-images.githubusercontent.com/20016273/170448436-cd43d14e-f2d6-4c60-9fb6-d7f68c3b701e.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Step-2
+![image](https://user-images.githubusercontent.com/20016273/170448078-a6a98c28-2b1c-428b-8056-880661f07ce7.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Invoice Preview by clicking Bill or Order button
 
-### `npm run eject`
+#### Step-1
+![image](https://user-images.githubusercontent.com/20016273/170449579-97612e8e-98c0-41ce-9170-aabae4dd9f1d.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Step-2
+![image](https://user-images.githubusercontent.com/20016273/170449770-fc40ac53-d9eb-41ba-8f1e-8ae912479992.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Submit products by clicking Payment button and showing the "Order successfull toast"
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![image](https://user-images.githubusercontent.com/20016273/170450207-b8759951-6d1c-42d1-958f-0cc92b1dc396.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### By clicking Suspend or Cancel button, all products from cart will be remove for cancellation and showing the "All product remove toast"
 
-## Learn More
+#### Step-1
+![image](https://user-images.githubusercontent.com/20016273/170450450-cf7eec58-7da9-433c-ba86-b5531b515b8c.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Step-2
+![image](https://user-images.githubusercontent.com/20016273/170450929-bfbc45c5-750a-43ee-9a41-f98437dc4a58.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### When no product available in cart, then Suspend or Order or Payment or Cancel or Bill button have no action and showing the "No product available toast"
 
-### Code Splitting
+![image](https://user-images.githubusercontent.com/20016273/170451556-86c19585-fcde-4864-b85b-73720419b169.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
