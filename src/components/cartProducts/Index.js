@@ -5,10 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useSelector, useDispatch } from "react-redux";
 import { pencil, eye, plusCircle, money } from 'react-icons-kit/fa';
-import { addProduct, deleteAllProducts } from "../../redux/actions/productActions";
+import { deleteAllProducts } from "../../redux/actions/productActions";
 import { productsList } from "../../redux/actions/productActions";
 import { PreviewModal } from "../modal/PreviewModal";
-import { AllProducts } from "../../utils/data";
 import { CartTables } from "./cartTables";
 
 export const CartProducts = () => {
@@ -16,21 +15,7 @@ export const CartProducts = () => {
     const [show, setShow] = useState(false);
     const [items, setItems] = useState(0);
     const [subTotal, setSubTotal] = useState(0);
-    const [searchInput, setSearchInput] = useState([]);
     const { products } = useSelector((state) => state.products);
-
-    // Handle add to cart by searching product
-    const handleAddToCart = () => {
-        const searchProduct = AllProducts.find((item) => item.name === searchInput)
-        if (searchProduct) {
-            const selectedProduct = {
-                quantity: 1,
-                ...searchProduct,
-            };
-
-            dispatch(addProduct(selectedProduct));
-        }
-    };
 
     // Handling toastify by their type and message
     const handleToast = (type, message) => {
@@ -106,12 +91,12 @@ export const CartProducts = () => {
                         type="text"
                         className="form-control shadow-none"
                         placeholder="Scan/Search product by name/code"
-                        onChange={(e) => setSearchInput(e.target.value)}
+                        // onChange={(e) => setSearchInput(e.target.value)}
                         style={{ fontSize: "15px" }}
                     />
                     <span
                         className="input-group-text text-primary"
-                        onClick={() => handleAddToCart()}
+                        // onClick={() => handleAddToCart()}
                         style={{ cursor: "pointer" }}
                     >
                         <Icon icon={plusCircle} size={18} />
@@ -168,7 +153,6 @@ export const CartProducts = () => {
                                 role="button"
                                 onClick={() => {
                                     products && products.length ?
-                                        dispatch(deleteAllProducts()) &&
                                         handleToast("success", "The Order is Saved Successfully")
                                         :
                                         handleToast("error", "No Product Available")

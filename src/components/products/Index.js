@@ -12,12 +12,9 @@ export const Products = (props) => {
     // handle add product to cart
     const handleAddToCart = (data) => {
         setLoading(true)
-        const selectedProduct = {
-            quantity: 1,
-            ...data,
-        };
+        
         setTimeout(() => {
-            dispatch(addProduct(selectedProduct));
+            dispatch(addProduct( {quantity: 1,...data}));
             setLoading(false)
         }, 500);
 
