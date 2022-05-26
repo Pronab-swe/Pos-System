@@ -5,21 +5,19 @@ import { addProduct } from "../../redux/actions/productActions";
 import { Loader } from "../loading/Index";
 
 export const Products = (props) => {
-
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false)
 
     // handle add product to cart
     const handleAddToCart = (data) => {
         setLoading(true)
-        
+
         setTimeout(() => {
-            dispatch(addProduct( {quantity: 1,...data}));
+            dispatch(addProduct({ quantity: 1, ...data }));
             setLoading(false)
         }, 500);
 
     };
-
 
     return (
         <div className="product-section">
@@ -42,6 +40,5 @@ export const Products = (props) => {
                     : null}
             </div>
         </div>
-
     )
 }

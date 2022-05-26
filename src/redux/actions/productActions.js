@@ -1,16 +1,16 @@
-import {ActionTypes} from "../contents/actionTypes";
+import { ActionTypes } from "../contents/actionTypes";
 
 // Getting all products action
 export const productsList = () => {
   return async (dispatch) => {
-      let products = [];
-      if (localStorage.getItem("products")) {
-        products = JSON.parse(localStorage.getItem("products"));
-      }
-      dispatch({
-        type: ActionTypes.GET_CART_PRODUCT,
-        payload: products,
-      });
+    let products = [];
+    if (localStorage.getItem("products")) {
+      products = JSON.parse(localStorage.getItem("products"));
+    }
+    dispatch({
+      type: ActionTypes.GET_CART_PRODUCT,
+      payload: products,
+    });
   };
 };
 

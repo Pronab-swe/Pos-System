@@ -67,13 +67,13 @@ export const CartProducts = () => {
                         <option value="2">Test 2</option>
                         <option value="3">Test 3</option>
                     </select>
-                    <span className="input-group-text text-primary">
+                    <span className="input-group-text text-primary button-cursor" >
                         <Icon icon={pencil} size={18} />
                     </span>
-                    <span className="input-group-text text-primary">
+                    <span className="input-group-text text-primary button-cursor" >
                         <Icon icon={eye} size={18} />
                     </span>
-                    <span className="input-group-text text-primary">
+                    <span className="input-group-text text-primary button-cursor" >
                         <Icon icon={plusCircle} size={18} />
                     </span>
                 </div>
@@ -91,13 +91,10 @@ export const CartProducts = () => {
                         type="text"
                         className="form-control shadow-none"
                         placeholder="Scan/Search product by name/code"
-                        // onChange={(e) => setSearchInput(e.target.value)}
                         style={{ fontSize: "15px" }}
                     />
                     <span
-                        className="input-group-text text-primary"
-                        // onClick={() => handleAddToCart()}
-                        style={{ cursor: "pointer" }}
+                        className="input-group-text text-primary button-cursor"
                     >
                         <Icon icon={plusCircle} size={18} />
                     </span>
