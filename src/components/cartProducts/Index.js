@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import './style.scss';
 import { Icon } from 'react-icons-kit';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
 import { useSelector, useDispatch } from "react-redux";
 import { pencil, eye, plusCircle, money } from 'react-icons-kit/fa';
 import { deleteAllProducts } from "../../redux/actions/productActions";
 import { productsList } from "../../redux/actions/productActions";
 import { PreviewModal } from "../modal/PreviewModal";
 import { CartTables } from "./cartTables";
+import { Toastify } from "../toastify/Toastify";
 
 export const CartProducts = () => {
     const dispatch = useDispatch();
@@ -20,13 +19,10 @@ export const CartProducts = () => {
     // Handling toastify by their type and message
     const handleToast = (type, message) => {
         if (type === "success") {
-            toast.success(message);
+            Toastify.Success(message)
         }
         else if (type === "error") {
-            toast.error(message)
-        }
-        else {
-            toast(message)
+            Toastify.Error(message)
         }
     }
 
@@ -216,8 +212,6 @@ export const CartProducts = () => {
                 />
             </PreviewModal>
 
-            {/* Toastify container call */}
-            <ToastContainer />
         </div>
     )
 }

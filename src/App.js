@@ -1,5 +1,6 @@
 import './App.scss';
-import {BrowserRouter as Router, Switch,Route} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/home/Index'
 import FourOFour from './pages/fourOfour/Index'
 
@@ -12,6 +13,9 @@ function App() {
           <Route path="*" component={FourOFour} />
         </Switch>
       </Router>
+
+      {/* Toastify container call */}
+      <ToastContainer />
     </div>
   );
 }
